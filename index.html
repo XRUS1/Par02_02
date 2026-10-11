@@ -65,7 +65,7 @@
             light.position.set(1, 1, 1).normalize();
             scene.add(light);
 
-            // ========== RETÍCULA (se adapta al hit test) ==========
+            // ========== RETÃCULA (se adapta al hit test) ==========
             const reticleGeometry = new THREE.RingGeometry(0.05, 0.07, 32);
             const reticleMaterial = new THREE.MeshBasicMaterial({ 
                 color: 0x00ff00,
@@ -107,7 +107,7 @@
             renderer.xr.enabled = true;
             container.appendChild(renderer.domElement);
 
-            // ========== BOTÓN AR ==========
+            // ========== BOTÃ“N AR ==========
             document.body.appendChild(ARButton.createButton(renderer, { requiredFeatures: ['hit-test'] }));
 
             // ========== CONTROLADOR ==========
@@ -124,7 +124,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         }
 
-        // ========== EVENTO SELECT: COLOCAR/MOVER LA RANA Y CAMBIAR ANIMACIÓN ==========
+        // ========== EVENTO SELECT: COLOCAR/MOVER LA RANA Y CAMBIAR ANIMACIÃ“N ==========
         function onSelect() {
             if (reticle.visible && rana) {
                 const position = new THREE.Vector3();
@@ -135,9 +135,9 @@
                 rana.quaternion.copy(quaternion);
                 rana.visible = true;
 
-                // LÓGICA DE ANIMACIÓN SECUENCIAL (0 a 11)
+                // LÃ“GICA DE ANIMACIÃ“N SECUENCIAL (0 a 11)
                 if (mixer && rana.animations && rana.animations.length > 0) {
-                    // 1. Detener por completo la animación previa
+                    // 1. Detener por completo la animaciÃ³n previa
                     mixer.stopAllAction();
 
                     // 2. Seguridad en caso de que el archivo tenga menos animaciones de las esperadas
@@ -147,15 +147,15 @@
                     const action = mixer.clipAction(rana.animations[clipActual]);
                     action.play();
 
-                    console.log("Toque registrado. Ejecutando animación índice: " + clipActual);
+                    console.log("Toque registrado. Ejecutando animaciÃ³n Ã­ndice: " + clipActual);
 
-                    // 4. Incrementar el contador cíclicamente de 0 a 11 (Vuelve a 0 en la vez 13 / índice 12)
+                    // 4. Incrementar el contador cÃ­clicamente de 0 a 11 (Vuelve a 0 en la vez 13 / Ã­ndice 12)
                     animacionIndex = (animacionIndex + 1) % 12;
                 }
             }
         }
 
-        // ========== LOOP DE ANIMACIÓN CON HIT TEST ==========
+        // ========== LOOP DE ANIMACIÃ“N CON HIT TEST ==========
         function animate() {
             renderer.setAnimationLoop(function (time, frame) {
                 const delta = clock.getDelta();
@@ -193,5 +193,7 @@
             });
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>eruda.init();</script>
 </body>
 </html>
